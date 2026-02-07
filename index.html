@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Azure Enterprise Base Project – Architecture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --azure: #0078d4;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --card: #ffffff;
+  --border: #dbeafe;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #eef6ff, #f8fafc);
+  color: var(--dark);
+}
+
+header {
+  background: linear-gradient(90deg, #005a9e, #0078d4);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: var(--azure);
+  border-left: 5px solid var(--azure);
+  padding-left: 12px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* HUB SPOKE */
+.hub-spoke {
+  background: #f1f7ff;
+  border: 2px dashed var(--azure);
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.hub {
+  background: linear-gradient(135deg, #005a9e, #0078d4);
+  color: white;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.spokes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.spoke {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Azure Enterprise Base Project</h1>
+  <p>End-to-End Enterprise Landing Zone Architecture</p>
+</header>
+
+<div class="container">
+
+  <!-- IDENTITY -->
+  <div class="section">
+    <div class="section-title">Phase 1 — Identity & Access (Entra ID)</div>
+    <div class="card-grid">
+      <div class="card"><h3>Users & Groups</h3><p>45 users across 4 departments</p></div>
+      <div class="card"><h3>Conditional Access</h3><p>MFA & Zero Trust policies</p></div>
+      <div class="card"><h3>Admin Roles</h3><p>Least privilege model</p></div>
+      <div class="card"><h3>Break-Glass</h3><p>Emergency access account</p></div>
+    </div>
+  </div>
+
+  <!-- GOVERNANCE -->
+  <div class="section">
+    <div class="section-title">Phase 2 & 3 — Governance</div>
+    <div class="card-grid">
+      <div class="card"><h3>Management Groups</h3><p>Platform, Prod, Non-Prod, Sandbox</p></div>
+      <div class="card"><h3>Azure Policy</h3><p>Naming, tags, regions, SKUs</p></div>
+      <div class="card"><h3>Security Baselines</h3><p>ASB & CIS initiatives</p></div>
+    </div>
+  </div>
+
+  <!-- NETWORK -->
+  <div class="section">
+    <div class="section-title">Phase 4 — Hub & Spoke Networking</div>
+    <div class="hub-spoke">
+      <div class="hub">Hub VNet<br>Shared Services • Routing • Security</div>
+      <div class="spokes">
+        <div class="spoke">IT Spoke VNet</div>
+        <div class="spoke">Sales Spoke VNet</div>
+        <div class="spoke">Marketing Spoke VNet</div>
+        <div class="spoke">HR Spoke VNet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPUTE -->
+  <div class="section">
+    <div class="section-title">Phase 5 — Compute & High Availability</div>
+    <div class="card-grid">
+      <div class="card"><h3>Virtual Machines</h3><p>1 VM per department</p></div>
+      <div class="card"><h3>Load Balancer</h3><p>Traffic distribution & HA</p></div>
+      <div class="card"><h3>VM Scale Sets</h3><p>Auto-scaling workloads</p></div>
+      <div class="card"><h3>Auto-Shutdown</h3><p>Cost optimization</p></div>
+    </div>
+  </div>
+
+  <!-- APPS & DATA -->
+  <div class="section">
+    <div class="section-title">Phase 6 & 7 — Applications & Data</div>
+    <div class="card-grid">
+      <div class="card"><h3>App Services</h3><p>Web Apps & deployment slots</p></div>
+      <div class="card"><h3>Storage Accounts</h3><p>GRS, soft delete, versioning</p></div>
+      <div class="card"><h3>Managed Identity</h3><p>Secure service access</p></div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section">
+    <div class="section-title">Phase 8 & 9 — Security & Zero Trust</div>
+    <div class="card-grid">
+      <div class="card"><h3>Key Vault</h3><p>Secrets, RBAC, purge protection</p></div>
+      <div class="card"><h3>Defender for Cloud</h3><p>Threat protection & Secure Score</p></div>
+      <div class="card"><h3>Identity Protection</h3><p>Risk-based sign-in control</p></div>
+    </div>
+  </div>
+
+  <!-- DR -->
+  <div class="section">
+    <div class="section-title">Phase 10 & 11 — Monitoring & DR</div>
+    <div class="card-grid">
+      <div class="card"><h3>Log Analytics</h3><p>Centralized logging & alerts</p></div>
+      <div class="card"><h3>Recovery Services Vault</h3><p>VM backup policies</p></div>
+      <div class="card"><h3>Site Recovery</h3><p>Cross-region disaster recovery</p></div>
+    </div>
+  </div>
+
+  <!-- AUTOMATION -->
+  <div class="section">
+    <div class="section-title">Phase 12 — Automation & Optimization</div>
+    <div class="card-grid">
+      <div class="card"><h3>Bicep Modules</h3><p>Reusable IaC components</p></div>
+      <div class="card"><h3>PowerShell</h3><p>Start/stop, cleanup scripts</p></div>
+      <div class="card"><h3>Cost Optimization</h3><p>Auto-shutdown & tagging</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Azure Enterprise Base Project • Static Architecture Diagram • Portfolio Ready
+</footer>
+
+</body>
+</html>
